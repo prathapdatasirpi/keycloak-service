@@ -1,0 +1,28 @@
+server:
+  port: 9001
+
+logging:
+  level:
+    root: INFO
+
+frontend_url: http://localhost:8080
+keycloak_issuer_url: https://keycloak.trojanae.com/realms/Mealplanet_dev
+keycloak_admin_url: https://keycloak.trojanae.com/admin/realms/Mealplanet_dev
+
+spring:
+  keycloak:
+    realm: Mealplanet_dev
+    url: ${keycloak_issuer_url}
+    auth-url: ${keycloak_issuer_url}/protocol/openid-connect/token
+    query-user-url: ${keycloak_admin_url}/users
+    admin-url: ${keycloak_admin_url}
+    forgot-password-redirect-url: ${frontend_url}/rest-password
+    user-invite-redirect-url: ${frontend_url}/invite/user/invitation
+    admin-client-id: admin-cli
+    admin-client-secret: bHA8TyEhwNSIgCjsrf3kaVYsbJySKmla
+    client-id: mealplanet-rest-api
+    client-secret: neSh9jAoif2AARVnDXCNIRftgvTWudZb
+
+  logging:
+    level:
+      root: INFO

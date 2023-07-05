@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+
+spring:
+
+#  main:
+#    allow-bean-definition-overriding: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id:  backend-dev
+            authorization-grant-type: authorization_code
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: https://keycloak.trojanae.com/realms/soc360
+            user-name-attribute: preferred_username
+        resourceserver:
+          jwt:
+            issuer-uri: https://keycloak.trojanae.com/realms/soc360
+            jwk-set-uri: https://keycloak.trojanae.com/realms/soc360/protocol/openid-connect/certs
+
+  keycloak:
+    realm: soc360
+    auth-server-url: https://keycloak.trojanae.com
+    resource: backend-dev
+    ssl-required: external
+    use-resource-role-mappings: true

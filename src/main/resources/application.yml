@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: dev
+  server:
+    port: 9000
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id:  backend-dev
+            authorization-grant-type: authorization_code
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: https://keycloak.trojanae.com/realms/soc360
+#            issuer-uri: http://localhost:8081/realms/soc360
+            user-name-attribute: preferred_username
+        resourceserver:
+          jwt:
+            issuer-uri: https://keycloak.trojanae.com/realms/soc360
+            jwk-set-uri: https://keycloak.trojanae.com/realms/soc360/protocol/openid-connect/certs
+#            issuer-uri: http://localhost:8081/realms/soc360
+#            jwk-set-uri: https://keycloak.trojanae.com/realms/soc360/protocol/openid-connect/certs
+
+  keycloak:
+    realm: soc360
+    auth-server-url: https://keycloak.trojanae.com
+#    auth-server-url: http://localhost:8081
+    resource: backend-dev
+    ssl-required: external
+    use-resource-role-mappings: false
+    public-client: true
+    verify-token-audience: true
+
